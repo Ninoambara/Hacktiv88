@@ -51,10 +51,12 @@
           <div class="form-holder">
               <div class="form-content">
                   <div class="form-items">
+                    
                       <h3>Profile</h3>
+                      <h5> Hello <%= data.getFullName() %></h5>
                       <p>This is your profile data</p>
                       <form class="requires-validation" novalidate action="/profile" method="post" id="profileForm">
-                       
+                          
                           <div class="col-md-12">
                              <input class="form-control" type="text" name="firstName" placeholder="Username..." value="<%= data.firstName %>" required>
                              <div class="valid-feedback">Username field is valid!</div>

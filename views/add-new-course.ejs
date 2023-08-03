@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Add New Course</title>
+  <%- include('./layouts/header.ejs') %>
+<%- include('./layouts/navbar.ejs') %>
+<%- include('./layouts/styleregister.ejs') %>
 </head>
 <body>
 
   <h1>Add New Course</h1>
 
-  <form action="/course/admin/add" method="post" id="addNewForm">
+  <!-- <form action="/course/admin/add" method="post" id="addNewForm">
     <label for="name">Course Name</label><br>
     <input type="text" name="name" placeholder="name.."><br>
 
@@ -35,7 +38,81 @@
 
     <input type="submit" value="Add">
 
-  </form>
+  </form> -->
   
+  <div class="form-body">
+    <div class="row justify-content-center">
+        <div class="form-holder">
+            <div class="form-content">
+                <div class="form-items">
+                  
+                    <h3>Profile</h3>
+                    <p>This is your profile data</p>
+                    <form class="requires-validation" novalidate action="/course/admin/add" method="post" id="addNewForm">
+                        
+                        <div class="col-md-12">
+                           <input class="form-control" type="text" name="name" placeholder="name..."  required>
+                           <div class="valid-feedback">name field is valid!</div>
+                           <div class="invalid-feedback">name field cannot be blank!</div>
+                        </div>
+                        <div class="col-md-12">
+                          <input class="form-control" type="text" name="description" placeholder="description..."required>
+                          <div class="valid-feedback">description field is valid!</div>
+                          <div class="invalid-feedback">description field cannot be blank!</div>
+                       </div>
+                        <div class="col-md-12">
+                          <input class="form-control" type="text" name="duration" placeholder="duration..."required>
+                          <div class="valid-feedback">duration field is valid!</div>
+                          <div class="invalid-feedback">duration field cannot be blank!</div>
+                       </div>
+                        <div class="col-md-12">
+                          <input class="form-control" type="text" name="pdfLink" placeholder="pdf..."required>
+                          <div class="valid-feedback">pdfLink field is valid!</div>
+                          <div class="invalid-feedback">pdfLink field cannot be blank!</div>
+                       </div>
+                        
+                       <div class="col-md-12">
+                        <select name="categoryId" id="">
+                          <option value="">---SELECT---</option>
+                    
+                          <% data.forEach((el) => { %>
+                           <option value="<%= el.id %>"><%= el.name %></option>
+                          <% }) %>
+                    
+                    
+                        </select><br><br>
+                            <div class="valid-feedback">You selected a Gender!</div>
+                            <div class="invalid-feedback">Please select a Gender!</div>
+                       </div>
+
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                      <label class="form-check-label">I confirm that all data are correct</label>
+                     <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
+                    </div>
+                    <input type="submit" value="add" class="btn btn-outline-success" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+  (function () {
+  'use strict'
+  const forms = document.querySelectorAll('.requires-validation')
+  Array.from(forms)
+  .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+      if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+      }
+
+      form.classList.add('was-validated')
+      }, false)
+  })
+  })()
+</script>
 </body>
 </html>

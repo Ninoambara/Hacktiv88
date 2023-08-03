@@ -1,6 +1,7 @@
 const { Category, User, Profile, Course, UserCourse } = require("../models");
 const bcrypt = require("bcryptjs");
 const {Op} = require("sequelize")
+const time = require("../helpers/time")
 
 class Controller {
   static home(req, res) {
@@ -133,7 +134,9 @@ class Controller {
     let { search } = req.query;
     let categoryList;
     
-    Category.categoryList()
+    Category.categoryList({
+      include: User
+    })
       .then((data) => {
         categoryList = data;
         return Course.getCourseByCategory(search); 
@@ -188,7 +191,7 @@ class Controller {
     };
     Course.findOne(options)
       .then((data) => {
-        res.render("see-detail", { data, isUser });
+        res.render("see-detail", { data, isUser, time });
       })
       .catch((err) => {
         res.send(err);
@@ -196,7 +199,12 @@ class Controller {
   }
 
   static addCourse(req, res) {
-    res.render("add-new-course", {})
+    let username;
+   User.findAll({})
+     .then((data) => {
+        console.log(data)
+        res.render("addcustomercourse", {data})
+     })
   }
 
   static editCourse(req, res) {
@@ -246,7 +254,7 @@ class Controller {
   }
 
   static addNewCategory(req, res) {
-    res.send("add new category adminv");
+    res.render("add_new_category", {})
   }
 
   static renderAddNewCategory(req, res) {

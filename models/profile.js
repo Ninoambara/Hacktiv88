@@ -11,6 +11,9 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
       Profile.belongsTo(models.User, { foreignKey: "userId" });
     }
+    getFullName() {
+      return `${this.firstName} ${this.lastName}`;
+    }
   }
   Profile.init(
     {
