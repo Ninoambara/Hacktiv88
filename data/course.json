@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Learn Python",
+    "description": "Learn Pyhton Now!!!",
+    "duration": 165,
+    "pdfLink": "tes",
+    "categoryId": 1
+  },
+  {
+    "name": "The Basics of Digital Martketing",
+    "description": "Digital marketing is...",
+    "duration": 183,
+    "pdfLink": "tes",
+    "categoryId": 2
+  },
+  {
+    "name": "The Basics Project Management",
+    "description": "Project management is...",
+    "duration": 109,
+    "pdfLink": "tes",
+    "categoryId": 3
+  }
+]

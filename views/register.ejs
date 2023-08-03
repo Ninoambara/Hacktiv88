@@ -1,0 +1,40 @@
+<%- include('./layouts/header.ejs') %>
+<%- include('./layouts/navbar.ejs') %>
+<div>
+
+    
+    <h1>Register</h1>
+    
+    <form action="/register" method="post" id="registerForm">
+      <% if (error) %> <p style="color: red;"><%= error %></p>
+      <label for="userName">Username</label><br />
+      <input type="text" name="userName" placeholder="Username..." /><br />
+      
+      <label for="password">Password</label><br />
+      <input type="text" name="password" placeholder="Password..." /><br />
+      
+      <label for="email">Email</label><br />
+      <input type="text" name="email" placeholder="Email..." /><br />
+
+      
+      <h1>Complete Your Profile</h1>
+      
+      <label for="firstName">Firstname</label><br />
+      <input type="text" name="firstName" placeholder="Firstname..." /><br />
+      
+      <label for="lastName">Lastname</label><br />
+      <input type="text" name="lastName" placeholder="Lastname..." /><br />
+      
+      <label for="gender">Gender</label><br />
+      <select name="gender" form="registerForm">
+        <option value="">---SELECT---</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select><br><br>
+      
+
+      <input type="submit" value="Submit">
+    </form>
+    
+    
+    <%- include('./layouts/footer.ejs') %>

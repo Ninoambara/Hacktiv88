@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile</title>
+  </head>
+  <body>
+    <div>
+      <a href="/"><h2>Home</h2></a>
+    </div>
+
+    <h1>This is Hactiv9 profile page</h1>
+
+    <form action="/profile" method="post" id="profileForm">
+      <h1>Your Profile</h1>
+
+      <label for="firstName">Firstname</label><br />
+      <input
+        type="text"
+        name="firstName"
+        value="<%= data.firstName %>"
+        placeholder="Firstname..."
+      /><br />
+
+      <label for="lastName">Lastname</label><br />
+      <input
+        type="text"
+        name="lastName"
+        value="<%= data.lastName %>"
+        placeholder="Lastname..."
+      /><br />
+
+      <label for="gender">Gender</label><br />
+      <select name="gender" form="profileForm">
+        <option value="">---SELECT---</option>
+        <% gender.forEach((el) => { %>
+        <option value="<%= el %>" <%= el === data.gender ? 'selected' : '' %>>
+          <%= el %>
+        </option>
+        <% }); %></select
+      ><br /><br />
+
+      <input type="submit" value="Update" /><br /><br />
+    </form>
+
+    <a href="/logout"><button style="color: red">Logout</button></a>
+  </body>
+</html>
+
+<%- include('./layouts/header.ejs') %>
+<%- include('./layouts/navbar.ejs') %>
+<body>
+    <h1>This is Hactiv9 profile page</h1>
+
+<%- include('./layouts/footer.ejs') %>
+

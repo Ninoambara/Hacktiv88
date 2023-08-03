@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Course Detail</title>
+</head>
+<body>
+
+  <div>
+      <% if(!isUser) { %>
+      <a href="/login"><h2>Login</h2></a>
+      <a href="/register"><h2>Register</h2></a>
+      <% } else { %>
+      <a href="/"><h2>Home</h2></a>
+      <% } %>
+
+      <a href="/profile"><h2>Profile</h2></a>
+    </div>
+
+    <table>
+      <tr>
+        <td>Course</td>
+        <td>Category</td>
+        <td>Description</td>
+        <td>PDF</td>
+        <td>Duration</td>
+      </tr>
+      <tr>
+        <td><%= data.name %></td>
+        <td><%= data.Category.name %></td>
+        <td><%= data.description %></td>
+        <td><%= data.pdfLink %></td>
+        <td><%= data.duration %></td>
+      </tr>
+    </table>
+
+    <% if(!isUser) { %>
+      <a href="/"><button style="color: green">Back to Home</button></a>
+    <% } else { %>
+      <a href="/course/add/<%= data.id %>">
+        <button style="color: green">Add Course</button>
+      </a>
+    <% } %>
+  
+</body>
+</html>

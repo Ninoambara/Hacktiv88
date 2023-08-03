@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Course</title>
+</head>
+<body>
+
+  <h1>Add New Course</h1>
+
+  <form action="/course/admin/add" method="post" id="addNewForm">
+    <label for="name">Course Name</label><br>
+    <input type="text" name="name" placeholder="name.."><br>
+
+    <label for="description">Description</label><br>
+    <input type="text" name="description" placeholder="description.."><br>
+
+    <label for="duration">Duration</label><br>
+    <input type="text" name="duration" placeholder="duration.."><br>
+
+    <label for="pdfLink">Pdf</label><br>
+    <input type="text" name="pdfLink" placeholder="Pdf.."><br>
+
+    <label for="categoryId">Category</label><br>
+    <select name="categoryId" id="">
+      <option value="">---SELECT---</option>
+
+      <% data.forEach((el) => { %>
+       <option value="<%= el.id %>"><%= el.name %></option>
+      <% }) %>
+
+
+    </select><br><br>
+
+    <input type="submit" value="Add">
+
+  </form>
+  
+</body>
+</html>

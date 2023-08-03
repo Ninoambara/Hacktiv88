@@ -1,0 +1,120 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hactiv9 All Course</title>
+  </head>
+  <body>
+    <div>
+      <% if(!isAdmin && !isUser) { %>
+      <a href="/login"><h2>Login</h2></a>
+      <a href="/register"><h2>Register</h2></a>
+      <% } else if(isAdmin || isUser) { %>
+      <a href="/"><h2>Home</h2></a>
+      <% } %>
+
+      <a href="/profile"><h2>Profile</h2></a>
+    </div>
+
+    <h1>This is Hactiv9 All Course Menu</h1>
+
+    <form action="/course/all" method="get">
+      <a href="/course/all"><button>ALL</button></a>
+
+      <% categoryList.forEach((el) => { %>
+      <input type="submit" value="<%= el.name %>" name="search" />
+      <% }); %>
+    </form>
+    <br />
+
+    <table>
+      <tr>
+        <td>Course</td>
+        <td>Category</td>
+        <td>Action</td>
+      </tr>
+
+      <% data.forEach((el) => { %>
+      <tr>
+        <td><%= el.name %></td>
+        <td><%= el.Category.name %></td>
+        <td>
+            <% if(!isAdmin) { %>
+                <a href="/course/detail/<%= el.id %>">
+                    <button>See Detail</button>
+                </a>
+             <% } %>
+
+            <% if(isUser) { %>
+                <a href="/course/add/<%= el.id %>">
+                    <button>Add Course</button>
+                </a>
+            <% } %>
+            
+            <% if(isAdmin) { %>
+                <a href="/course/edit/<%= el.id %>">
+                    <button>Edit</button>
+                </a>
+                <a href="/course/delete/<%= el.id %>">
+                    <button>delete</button>
+                </a>
+            <% } %>
+
+        </td>
+      </tr>
+      <% }); %>
+    </table>
+
+    <% if(!isAdmin && !isUser) { %>
+        <a href="/"><button style="color: green">Back to Home</button></a>
+    <% } %>
+
+    <% if(isAdmin) { %>
+        <a href="/course/admin/add"><button>Add New Course</button></a>
+        <a href="/category/admin/add"><button>Add New Category</button></a>
+        <a href="/category/admin/edit"><button>Edit Category</button></a>
+    <% } %>
+  </body>
+</html>
+
+<%- include('./layouts/header.ejs') %>
+<%- include('./layouts/navbar.ejs') %>
+
+<h1>This is Hactiv9 All Course Menu</h1>
+
+<style>
+    table {
+      font-family: arial, sans-serif;
+      border-collapse: collapse;
+      width: 100%;
+    }
+    
+    td, th {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+    }
+    
+    tr:nth-child(even) {
+      background-color: #dddddd;
+    }
+    </style>
+
+<table>
+  <thead class="table-success">
+    <tr style="font-weight: 500;">
+        <td>Course Name</td>
+        <td>Category</td>
+        <td>Action</td>
+       
+    </tr>
+    <tr>
+    
+    </tr>
+    </thead>
+    
+  </table>
+
+<%- include('./layouts/footer.ejs') %>
