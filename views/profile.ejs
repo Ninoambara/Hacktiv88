@@ -7,13 +7,12 @@
     <title>Profile</title>
   </head>
   <body>
-    <div>
-      <a href="/"><h2>Home</h2></a>
-    </div>
+    <%- include('./layouts/header.ejs') %>
+  <%- include('./layouts/navbar.ejs') %>
+  <%- include('./layouts/styleregister.ejs') %>
 
-    <h1>This is Hactiv9 profile page</h1>
 
-    <form action="/profile" method="post" id="profileForm">
+    <!-- <form action="/profile" method="post" id="profileForm">
       <h1>Your Profile</h1>
 
       <label for="firstName">Firstname</label><br />
@@ -45,14 +44,85 @@
       <input type="submit" value="Update" /><br /><br />
     </form>
 
-    <a href="/logout"><button style="color: red">Logout</button></a>
+    <a href="/logout"><button style="color: red">Logout</button></a> -->
+
+    <div class="form-body">
+      <div class="row justify-content-center">
+          <div class="form-holder">
+              <div class="form-content">
+                  <div class="form-items">
+                      <h3>Profile</h3>
+                      <p>This is your profile data</p>
+                      <form class="requires-validation" novalidate action="/profile" method="post" id="registerForm">
+                       
+                          <div class="col-md-12">
+                             <input class="form-control" type="text" name="firstName" placeholder="Username..." value="<%= data.firstName %>" required>
+                             <div class="valid-feedback">Username field is valid!</div>
+                             <div class="invalid-feedback">Username field cannot be blank!</div>
+                          </div>
+                          <div class="col-md-12">
+                            <input class="form-control" type="text" name="lastName"  value="<%= data.lastName %>" required>
+                            <div class="valid-feedback">lastName field is valid!</div>
+                            <div class="invalid-feedback">lastName field cannot be blank!</div>
+                         </div>
+
+                         <div class="col-md-12">
+                          <select name="gender" form="profileForm">
+                            <option value="">---SELECT---</option>
+                            <% gender.forEach((el) => { %>
+                            <option value="<%= el %>" <%= el === data.gender ? 'selected' : '' %>>
+                              <%= el %>
+                            </option>
+                            <% }); %>
+                          </select>
+                              <div class="valid-feedback">You selected a Gender!</div>
+                              <div class="invalid-feedback">Please select a Gender!</div>
+                         </div>
+
+
+                         
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                        <label class="form-check-label">I confirm that all data are correct</label>
+                       <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
+                      </div>
+                
+
+                          <div class="form-button mt-3">
+                              <button id="submit" type="submit" class="btn btn-primary"  value="Update">Register</button>
+                          </div>
+                          <div class="form-button mt-3">
+                            <a class="btn btn-danger" href="/logout" role="button">Logout</a>
+                        </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <script>
+    (function () {
+    'use strict'
+    const forms = document.querySelectorAll('.requires-validation')
+    Array.from(forms)
+    .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+        }, false)
+    })
+    })()
+</script>
   </body>
 </html>
 
-<%- include('./layouts/header.ejs') %>
-<%- include('./layouts/navbar.ejs') %>
+
 <body>
-    <h1>This is Hactiv9 profile page</h1>
 
 <%- include('./layouts/footer.ejs') %>
 

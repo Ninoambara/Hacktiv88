@@ -56,8 +56,8 @@ router.post("/category/admin/add", Controller.renderAddNewCategory);
 router.get("/category/admin/edit", Controller.editCategory);
 router.post("/category/admin/edit", Controller.renderEditCategory);
 
-router.get("/seeAllCourse", Controller.seeAllCourse);
-router.get("/seeAllCourse/detail/:id", Controller.seeAllCourse);
+// router.get("/seeAllCourse", Controller.seeAllCourse);
+// router.get("/seeAllCourse/detail/:id", Controller.seeAllCourse);
 
 router.get("/allCategories", Controller.seeAllCourse);
 router.get("/allCategories/edit", Controller.seeAllCourse);

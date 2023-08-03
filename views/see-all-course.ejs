@@ -7,7 +7,9 @@
     <title>Hactiv9 All Course</title>
   </head>
   <body>
-    <div>
+<%- include('./layouts/navbar.ejs') %>
+
+    <!-- <div>
       <% if(!isAdmin && !isUser) { %>
       <a href="/login"><h2>Login</h2></a>
       <a href="/register"><h2>Register</h2></a>
@@ -16,7 +18,7 @@
       <% } %>
 
       <a href="/profile"><h2>Profile</h2></a>
-    </div>
+    </div> -->
 
     <h1>This is Hactiv9 All Course Menu</h1>
 
@@ -77,14 +79,16 @@
         <a href="/category/admin/edit"><button>Edit Category</button></a>
     <% } %>
   </body>
+  <footer>
+    <%- include('./layouts/footer.ejs') %>
+  </footer>
 </html>
 
 <%- include('./layouts/header.ejs') %>
-<%- include('./layouts/navbar.ejs') %>
 
-<h1>This is Hactiv9 All Course Menu</h1>
 
-<style>
+
+ <style>
     table {
       font-family: arial, sans-serif;
       border-collapse: collapse;
@@ -102,7 +106,7 @@
     }
     </style>
 
-<table>
+<!-- <table>
   <thead class="table-success">
     <tr style="font-weight: 500;">
         <td>Course Name</td>
@@ -115,6 +119,5 @@
     </tr>
     </thead>
     
-  </table>
+  </table> --> 
 
-<%- include('./layouts/footer.ejs') %>

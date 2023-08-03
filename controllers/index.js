@@ -133,6 +133,13 @@ class Controller {
 
   static userCourse(req, res) {
     let id = req.params.id;
+
+    // Course.findAll({
+    //   where: 
+    // })
+    // .then((data) => {
+    //   res.render('user_course', {data})
+    // })
     res.send("ini your course");
   }
 
@@ -211,13 +218,13 @@ class Controller {
     res.send("edit category admin");
   }
 
-  static seeAllCourse(req,res){
-    Course.findAll()
-    .then(course => {
-    res.send(course)
-    })
-    .catch((err) => res.send(err))
-}
+//   static seeAllCourse(req,res){
+//     Course.findAll()
+//     .then(course => {
+//     res.send(course)
+//     })
+//     .catch((err) => res.send(err))
+// }
 
 static allCategories(req,res){
   Category.findAll()
