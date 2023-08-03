@@ -200,11 +200,46 @@ class Controller {
 
   static addCourse(req, res) {
     let username;
-   User.findAll({})
-     .then((data) => {
-        console.log(data)
-        res.render("addcustomercourse", {data})
-     })
+    let id = req.params.id
+    Course.findOne({
+      include: User,
+      where: {
+        id
+      }
+    })
+    .then((data) => {
+      // res.send(data)
+      res.render("addcustomercourse", {data})
+    })
+    .catch((err) => {
+      res.send(err)
+    })
+  }
+
+  static saveAddCourse(req,res){
+    let userId;
+    let CourseId
+    let {courseId, userName} = req.body
+
+    User.findOne({
+      where: {
+        userName
+      }
+    })
+    .then((user) => {
+      userId = user.id 
+      return UserCourse.create({
+        userId: userId,
+        courseId: courseId
+      })
+    })
+    .then((data) => {
+      res.redirect("/home")
+    })
+    .catch((err) => {
+      console.log(err)
+      res.send(err)
+    })
   }
 
   static editCourse(req, res) {

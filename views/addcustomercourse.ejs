@@ -4,21 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <%- include('./layouts/header.ejs') %>
+<%- include('./layouts/navbar.ejs') %>
+<%- include('./layouts/styleregister.ejs') %>
+
 </head>
 <body>
-    <h1>ADD to</h1>
+    <div class="form-body">
+      <div class="row justify-content-center">
+          <div class="form-holder">
+              <div class="form-content">
+                  <div class="form-items">
+                      <h3>Add Course</h3>
+                      <p>You want this?</p>
+                      
+                      <form action="/course/add/<%= data.id  %>" method="post">
+                        <select name="courseId">
+                            
+                                <option value="<%= data.id %>"><%= data.name %></option>
+                        </select>
+                        
+                        <input type="text" name="userName" placeholder="input your userName">
+                        <br>
+                        <br>
+                        <input class="btn btn-outline-success mr-4" type="submit" value="Add"><a class="btn btn-outline-danger mr-5" href="/course/all">Back</a>
+                    </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <script>
+    (function () {
+    'use strict'
+    const forms = document.querySelectorAll('.requires-validation')
+    Array.from(forms)
+    .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
 
-    
-    <form action="/course/add" method="post">
-        <h1>choose your course</h1>
-        <select>
-            <option selected disabled>CHOOSE ONE</option>
-            <% data.forEach(el => { %>
-                <option><%= el.Course.name %></option>
-            <% }) %>
-        </select>
-        <br>
-        <input type="submit" value="Add">
-    </form>
+        form.classList.add('was-validated')
+        }, false)
+    })
+    })()
+</script>
 </body>
 </html>

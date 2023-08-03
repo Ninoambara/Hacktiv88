@@ -51,9 +51,6 @@ module.exports = (sequelize, DataTypes) => {
           notNull: {
             msg: "Course Name is required",
           },
-          isAlpha: {
-            msg: "Description must be alphabet",
-          },
         },
       },
 
