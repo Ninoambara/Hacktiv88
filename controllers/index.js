@@ -172,7 +172,7 @@ class Controller {
         throw new Error('Data user course tidak ditemukan');
       }
       let courseid = userc.courseId;
-      res.render("user_course", {userc})
+      res.render("user_course", {userc,time})
       // console.log(userc)
     })
     .catch((err) => {

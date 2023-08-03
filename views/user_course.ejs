@@ -4,12 +4,29 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <%- include('./layouts/header.ejs') %>
+<%- include('./layouts/navbar.ejs') %>
 </head>
 <body>
 
   <h1>This is your courses</h1>
-  <% userc.forEach(el => { %>
-       <h1> <%= el.Course.name %></h1>
-  <% }) %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Name</th>
+        <th scope="col">Duration</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% userc.forEach((el,i) => { %>
+        <tr>
+          <th scope="row"><%= i + 1 %></th>
+          <td><%= el.Course.name %></td>
+          <td><%= time(el.Course.duration) %></td>
+        </tr>
+   <% }) %>
+    </tbody>
+  </table>
 </body>
 </html>
