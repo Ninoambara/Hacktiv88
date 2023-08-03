@@ -4,10 +4,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>Hactiv88 Home Page</title>
+    <%- include('./layouts/mainpage.ejs') %>
   </head>
-  <body>
-    <%- include('./layouts/navbar.ejs') %>
+
+  <%- include('./layouts/navbar.ejs') %>
+  <body class="background-color: #001220;">
     <!-- <div>
       <% if(!isAdmin && !isUser) { %>
       <a href="/login"><h2>Login</h2></a>
@@ -18,31 +21,34 @@
 
       <a href="/profile"><h2>Profile</h2></a>
     </div> -->
+    <div class="main">
+      <div class="cardutama">
+        <h1>Hactiv88</h1>
+      </div>
 
-    <h1>This is Hactiv88 Home</h1>
-    <% if(userName != null) { %>
-    <p>Halo!!! <%= userName %></p>
-    <% } %>
+      <div class="sapa">
+        <% if(userName != null) { %>
+          <h1>Halo!!! <%= userName %></h1>
+          <% } %>
+      </div>
 
-    <div>
-      <a href="/course/all"><p>See all Courses</p></a>
-      <% if(isUser) { %>
-      <a href="/course/user/<%= userId %>"><p>Your Courses</p></a>
-      <% } %>
-      <a href="/contactUs"><p>contact us</p></a>
+      <div class="button1 mt-5">
+        <a class="btn btn-outline-warning mr-5" href="/course/all" role="button">Our Courses</a>
+        <% if(isUser) { %>
+        <a href="/course/user/<%= userId %>" class="btn btn-outline-warning mr-5" role="button">Your Courses</a>
+        <% } %>
+        <a href="/contactUs" class="btn btn-outline-warning mr-5" role="button">contact us</a>
+
+      </div>
     </div>
+
+   
+    
+
+    
   </body>
 </html>
 
 <%- include('./layouts/header.ejs') %>
-
-
-
-<!-- <h1>This is Hactiv9 Home</h1> -->
-
-<!-- <div>
-    <a href="/seeAllCourse"><p>See all Courses</p></a>
-    <a href="/contactUs"><p>contact us</p></a>
-</div> -->
 <%- include('./layouts/footer.ejs') %>
 

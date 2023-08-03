@@ -123,7 +123,7 @@ class Controller {
         return Course.getCourseByCategory(search);
       })
       .then((data) => {
-        res.render("see-all-course", { isAdmin, isUser, data, categoryList });
+        res.render("see-all-course", { isAdmin, isUser, data, categoryList });  
       })
       .catch((err) => {
         console.log(err);

@@ -4,7 +4,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hactiv9 All Course</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Hactiv88 All Course</title>
+    <%- include('./layouts/stylehome.ejs') %>
   </head>
   <body>
 <%- include('./layouts/navbar.ejs') %>
@@ -20,18 +22,12 @@
       <a href="/profile"><h2>Profile</h2></a>
     </div> -->
 
-    <h1>This is Hactiv9 All Course Menu</h1>
+   
 
-    <form action="/course/all" method="get">
-      <a href="/course/all"><button>ALL</button></a>
-
-      <% categoryList.forEach((el) => { %>
-      <input type="submit" value="<%= el.name %>" name="search" />
-      <% }); %>
-    </form>
+    
     <br />
 
-    <table>
+    <!-- <table>
       <tr>
         <td>Course</td>
         <td>Category</td>
@@ -67,10 +63,59 @@
         </td>
       </tr>
       <% }); %>
-    </table>
+    </table> -->
+
+
+    <div class="container mt-5">
+      <h1>This is Hactiv88 All Course Menu</h1>
+      <form class="text-right mb-4 form-select" action="/course/all" method="get">
+        <label for="Category">Filter by Category:</label>
+        <select name="search" id="degree">
+          <option value="">All</option>
+          <% categoryList.forEach((degree) => { %>
+            <option value="<%= degree.name %>" ><%= degree.name %></option>
+          <% }); %>
+        </select>
+        <button class="btn btn-primary" type="submit">Filter</button>
+      </form>
+    <div class="row">
+      <% data.forEach((el) => { %>
+        <div class="col-md-3 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title"><%= el.name %></h5>
+              <h5 class="card-text cardPosition"><%=  %></h5>
+              <p class="card-text education"><%= el.Category.name  %></p>
+              <p class="card-text education"><%= el.duration %></p>
+              <% if(!isAdmin) { %>
+                <div class="d-flex justify-content-center mt-3">
+                  <a href="/course/detail/<%= el.id %>" class="btn btn-outline-primary mr-2">Edit</a>
+                </div>
+             <% } %>
+             <% if(isUser) { %>
+                <div class="d-flex justify-content-center mt-3">
+                <a href="/course/add/<%= el.id %>" class="btn btn-outline-success mr-2">Add course</a>
+              </div>
+              <% } %>
+          
+              <% if(isAdmin) { %>
+                <div class="d-flex justify-content-center mt-3">
+                  <!-- Tombol Edit -->
+                  <a href="/course/edit/<%= el.id %>" class="btn btn-primary mr-2">Edit</a>
+                  <!-- Tombol Delete -->
+                  <a href="/course/delete/<%= el.id %>" class="btn btn-danger">Delete</a>
+                </div>
+              <% } %>
+              
+              
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
 
     <% if(!isAdmin && !isUser) { %>
-        <a href="/"><button style="color: green">Back to Home</button></a>
+      <a href="/"><button style="color: green">Back to Home</button></a>
     <% } %>
 
     <% if(isAdmin) { %>
@@ -78,33 +123,15 @@
         <a href="/category/admin/add"><button>Add New Category</button></a>
         <a href="/category/admin/edit"><button>Edit Category</button></a>
     <% } %>
+    </div>
   </body>
   <footer>
-    <%- include('./layouts/footer.ejs') %>
+    <!-- <%- include('./layouts/footer.ejs') %> -->
   </footer>
 </html>
 
 <%- include('./layouts/header.ejs') %>
 
-
-
- <style>
-    table {
-      font-family: arial, sans-serif;
-      border-collapse: collapse;
-      width: 100%;
-    }
-    
-    td, th {
-      border: 1px solid #dddddd;
-      text-align: left;
-      padding: 8px;
-    }
-    
-    tr:nth-child(even) {
-      background-color: #dddddd;
-    }
-    </style>
 
 <!-- <table>
   <thead class="table-success">

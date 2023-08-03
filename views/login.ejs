@@ -1,10 +1,9 @@
 <%- include('./layouts/header.ejs') %>
 <%- include('./layouts/navbar.ejs') %>
+<%- include('./layouts/styleregister.ejs') %>
 
-
-    <h1>This is Login Page</h1>
-    <% if (error) %> <h3 style="color: red;"><%= error %></h3>
-    <form action="/login" method="post">
+    
+    <!-- <form action="/login" method="post">
       <label for="userName">Username</label><br />
       <input type="text" name="userName" placeholder="Username..." /><br />
 
@@ -16,7 +15,67 @@
       /><br /><br />
 
       <input type="submit" value="Login" />
-    </form>
+    </form> -->
+
+    <form action="/login" method="post"></form>
+    <div class="form-body">
+      <div class="row justify-content-center">
+          <div class="form-holder">
+              <div class="form-content">
+                  <div class="form-items">
+                      <h3>Login</h3>
+                      <p>Input your data</p>
+                      <% if (error) %> <h3 style="color: red;"><%= error %></h3>
+                      <form class="requires-validation" novalidate action="/login" method="post">
+                       
+                          <div class="col-md-12">
+                             <input class="form-control" type="text" name="userName" placeholder="Username..." required>
+                             <div class="valid-feedback">Username field is valid!</div>
+                             <div class="invalid-feedback">Username field cannot be blank!</div>
+                          </div>
+                          <div class="col-md-12">
+                            <input class="form-control" type="password" name="password" placeholder="password..." required>
+                            <div class="valid-feedback">password field is valid!</div>
+                            <div class="invalid-feedback">password field cannot be blank!</div>
+                         </div>
+
+
+                         
+
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
+                        <label class="form-check-label">I confirm that all data are correct</label>
+                       <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
+                      </div>
+                
+
+                          <div class="form-button mt-3">
+                              <button id="submit" type="submit" class="btn btn-primary"  value="Login">Login</button>
+                          </div>
+                      </form>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</form>
+  <script>
+    (function () {
+    'use strict'
+    const forms = document.querySelectorAll('.requires-validation')
+    Array.from(forms)
+    .forEach(function (form) {
+        form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+            event.preventDefault()
+            event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+        }, false)
+    })
+    })()
+</script>
   </body>
 </html>
 
