@@ -37,7 +37,9 @@ router.get("/course/all", Controller.seeAllCourse);
 
 router.get("/course/user/:id", Controller.userCourse);
 
+router.get("/invoice", Controller.pdfView);
 router.get("/course/detail/:id", Controller.seeDetail);
+
 
 router.get("/course/add/:id", Controller.addCourse);
 router.post("/course/add/:id", Controller.saveAddCourse);

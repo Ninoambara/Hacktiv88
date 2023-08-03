@@ -4,6 +4,7 @@
   "description": "mock up website dapat dilihat di bagian sini:\r https://www.canva.com/design/DAFnxa8rd9k/TsZTGd-jV7GeD55E7NlQxg/edit",
   "main": "app.js",
   "scripts": {
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
@@ -14,6 +15,8 @@
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "express-session": "^1.17.3",
+    "nodemon": "^3.0.1",
+    "pdfkit": "^0.13.0",
     "pg": "^8.11.2",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.32.1"

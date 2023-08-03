@@ -2,6 +2,7 @@ const { Category, User, Profile, Course, UserCourse } = require("../models");
 const bcrypt = require("bcryptjs");
 const {Op} = require("sequelize")
 const time = require("../helpers/time")
+const pdfService = require('../service/pdf-service')
 
 class Controller {
   static home(req, res) {
@@ -332,6 +333,20 @@ static addCategories(req,res){
   static contactUs(req, res) {
     res.render("contact-us");
   }
+
+  static pdfView (req, res, next) {
+    const stream = res.writeHead(200, {
+      'Content-Type': 'application/pdf',
+      'Content-Disposition': 'attachment;filename=materi.pdf'
+    });
+
+    pdfService.buildPDF(
+      (chunk) => stream.write(chunk),
+      () => stream.end()
+    )
+  }
+
+  
 }
 
 module.exports = Controller;
