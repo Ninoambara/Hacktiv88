@@ -89,7 +89,7 @@
               <p class="card-text education"><%= el.duration %></p>
               <% if(!isAdmin) { %>
                 <div class="d-flex justify-content-center mt-3">
-                  <a href="/course/detail/<%= el.id %>" class="btn btn-outline-primary mr-2">Edit</a>
+                  <a href="/course/detail/<%= el.id %>" class="btn btn-outline-primary mr-2">Detail</a>
                 </div>
              <% } %>
              <% if(isUser) { %>
@@ -132,19 +132,4 @@
 
 <%- include('./layouts/header.ejs') %>
 
-
-<!-- <table>
-  <thead class="table-success">
-    <tr style="font-weight: 500;">
-        <td>Course Name</td>
-        <td>Category</td>
-        <td>Action</td>
-       
-    </tr>
-    <tr>
-    
-    </tr>
-    </thead>
-    
-  </table> --> 
 

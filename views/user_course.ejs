@@ -6,6 +6,10 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>MASOK</h1>
+
+  <h1>This is your courses</h1>
+  <% userc.forEach(el => { %>
+       <h1> <%= el.Course.name %></h1>
+  <% }) %>
 </body>
 </html>

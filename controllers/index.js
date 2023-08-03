@@ -1,5 +1,6 @@
-const { Category, User, Profile, Course } = require("../models");
+const { Category, User, Profile, Course, UserCourse } = require("../models");
 const bcrypt = require("bcryptjs");
+const {Op} = require("sequelize")
 
 class Controller {
   static home(req, res) {
@@ -87,12 +88,26 @@ class Controller {
   static updateProfile(req, res) {
     let { userId } = req.session;
     let { firstName, lastName, gender } = req.body;
-    Profile.create({ firstName, lastName, gender, userId })
-      .then(() => {
-        res.redirect("/profile");
+  
+    Profile.findOne({ 
+      where: { userId } 
+    })
+      .then(profile => {
+        if (profile) {
+          profile.firstName = firstName;
+          profile.lastName = lastName;
+          profile.gender = gender;
+  
+          return profile.save();
+        } else {
+          throw new Error('Profil pengguna tidak ditemukan');
+        }
       })
-      .catch((err) => {
-        res.send(err.errors.map((el) => el.message));
+      .then(updatedProfile => {
+        res.redirect("/home");
+      })
+      .catch(error => {
+        res.send(error.message);
       });
   }
 
@@ -106,7 +121,7 @@ class Controller {
     let { firstName, lastName, gender } = req.body;
     Profile.create({ firstName, lastName, gender, userId })
       .then(() => {
-        res.redirect("/profile");
+        res.redirect("/home");
       })
       .catch((err) => {
         res.send(err.errors.map((el) => el.message));
@@ -117,10 +132,11 @@ class Controller {
     let { isAdmin, isUser } = req.session;
     let { search } = req.query;
     let categoryList;
+    
     Category.categoryList()
       .then((data) => {
         categoryList = data;
-        return Course.getCourseByCategory(search);
+        return Course.getCourseByCategory(search); 
       })
       .then((data) => {
         res.render("see-all-course", { isAdmin, isUser, data, categoryList });  
@@ -130,17 +146,36 @@ class Controller {
         res.send(err);
       });
   }
+  
+  static getCourseByCategory(search) {
+    let filter = {};
+    if (search) {
+      filter = { category: { [Op.like]: `%${search}%` } };
+    }
+    return Course.findAll({ where: filter });
+  }
 
   static userCourse(req, res) {
     let id = req.params.id;
-
-    // Course.findAll({
-    //   where: 
-    // })
-    // .then((data) => {
-    //   res.render('user_course', {data})
-    // })
-    res.send("ini your course");
+  
+    UserCourse.findAll({
+      where: {
+        userId: id
+      },
+      include: Course
+    })
+    .then((userc) => {
+      if (!userc) {
+        throw new Error('Data user course tidak ditemukan');
+      }
+      let courseid = userc.courseId;
+      res.render("user_course", {userc})
+      // console.log(userc)
+    })
+    .catch((err) => {
+      console.error('Terjadi kesalahan:', err);
+      res.status(500).send('Data course tidak ditemukan');
+    });
   }
 
 
@@ -161,7 +196,7 @@ class Controller {
   }
 
   static addCourse(req, res) {
-    res.send("add course user");
+    res.render("add-new-course", {})
   }
 
   static editCourse(req, res) {
@@ -176,7 +211,15 @@ class Controller {
 
   static deleteCourse(req, res) {
     let id = req.params.id;
-    res.send("delete course admin");
+    
+    Course.destroy({
+      where: {
+        id
+      }
+    })
+    .then(() => {
+      res.redirect("/course/all")
+    })
   }
 
   static addNewCourse(req, res) {

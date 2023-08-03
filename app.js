@@ -7,7 +7,7 @@ const expiryDate = new Date(Date.now() + 60 * 60 * 1000); // 1 hour
 
 app.set("trust proxy", 1);
 app.set("view engine", "ejs");
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
 app.use(
   session({
     secret: "S3Cur3",

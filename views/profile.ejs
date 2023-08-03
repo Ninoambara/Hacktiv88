@@ -53,7 +53,7 @@
                   <div class="form-items">
                       <h3>Profile</h3>
                       <p>This is your profile data</p>
-                      <form class="requires-validation" novalidate action="/profile" method="post" id="registerForm">
+                      <form class="requires-validation" novalidate action="/profile" method="post" id="profileForm">
                        
                           <div class="col-md-12">
                              <input class="form-control" type="text" name="firstName" placeholder="Username..." value="<%= data.firstName %>" required>
@@ -67,31 +67,24 @@
                          </div>
 
                          <div class="col-md-12">
-                          <select name="gender" form="profileForm">
-                            <option value="">---SELECT---</option>
-                            <% gender.forEach((el) => { %>
-                            <option value="<%= el %>" <%= el === data.gender ? 'selected' : '' %>>
-                              <%= el %>
-                            </option>
-                            <% }); %>
-                          </select>
+                            <select name="gender" form="profileForm">
+                              <option value="">---SELECT---</option>
+                              <% gender.forEach((el) => { %>
+                              <option value="<%= el %>" <%= el === data.gender ? 'selected' : '' %>>
+                                <%= el %>
+                              </option>
+                              <% }); %></select
+                            ><br /><br />
                               <div class="valid-feedback">You selected a Gender!</div>
                               <div class="invalid-feedback">Please select a Gender!</div>
                          </div>
-
-
-                         
 
                       <div class="form-check">
                         <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
                         <label class="form-check-label">I confirm that all data are correct</label>
                        <div class="invalid-feedback">Please confirm that the entered data are all correct!</div>
                       </div>
-                
-
-                          <div class="form-button mt-3">
-                              <button id="submit" type="submit" class="btn btn-outline-success"  value="Update">Update</button>
-                          </div>
+                      <input type="submit" value="Update" class="btn btn-outline-success" />
                           <div class="form-button mt-3">
                             <a class="btn btn-danger" href="/logout" role="button">Logout</a>
                         </div>
